@@ -1,0 +1,199 @@
+lab:
+  description: ''
+  notes: ''
+  title: CCIE_ASA_Cohort_PBR
+  version: 0.0.5
+nodes:
+  - id: n0
+    label: InternalNetwork
+    node_definition: csr1000v
+    x: 330
+    y: 365
+    configuration: |-
+      hostname inserthostname_here
+      end
+    hide_links: false
+    ram: 3072
+    cpus: 1
+    cpu_limit: 100
+    data_volume: 0
+    boot_disk_size: 0
+    tags: []
+    interfaces:
+      - id: i0
+        label: Loopback0
+        type: loopback
+      - id: i1
+        slot: 0
+        label: GigabitEthernet1
+        type: physical
+      - id: i2
+        slot: 1
+        label: GigabitEthernet2
+        type: physical
+      - id: i3
+        slot: 2
+        label: GigabitEthernet3
+        type: physical
+      - id: i4
+        slot: 3
+        label: GigabitEthernet4
+        type: physical
+  - id: n1
+    label: ISP1
+    node_definition: csr1000v
+    x: 1053
+    y: 245
+    configuration: |-
+      hostname inserthostname_here
+      end
+    hide_links: false
+    ram: 3072
+    cpus: 1
+    cpu_limit: 100
+    data_volume: 0
+    boot_disk_size: 0
+    tags: []
+    interfaces:
+      - id: i0
+        label: Loopback0
+        type: loopback
+      - id: i1
+        slot: 0
+        label: GigabitEthernet1
+        type: physical
+      - id: i2
+        slot: 1
+        label: GigabitEthernet2
+        type: physical
+      - id: i3
+        slot: 2
+        label: GigabitEthernet3
+        type: physical
+      - id: i4
+        slot: 3
+        label: GigabitEthernet4
+        type: physical
+  - id: n2
+    label: ISP2
+    node_definition: csr1000v
+    x: 1064
+    y: 446
+    configuration: |-
+      hostname inserthostname_here
+      end
+    hide_links: false
+    ram: 3072
+    cpus: 1
+    cpu_limit: 100
+    data_volume: 0
+    boot_disk_size: 0
+    tags: []
+    interfaces:
+      - id: i0
+        label: Loopback0
+        type: loopback
+      - id: i1
+        slot: 0
+        label: GigabitEthernet1
+        type: physical
+      - id: i2
+        slot: 1
+        label: GigabitEthernet2
+        type: physical
+      - id: i3
+        slot: 2
+        label: GigabitEthernet3
+        type: physical
+      - id: i4
+        slot: 3
+        label: GigabitEthernet4
+        type: physical
+  - id: n3
+    label: ASA-PBR
+    node_definition: asav
+    x: 788
+    y: 366
+    configuration: ''
+    hide_links: false
+    ram: 2048
+    cpus: 1
+    cpu_limit: 100
+    data_volume: 0
+    boot_disk_size: 0
+    tags: []
+    interfaces:
+      - id: i0
+        slot: 0
+        label: Management0/0
+        type: physical
+      - id: i1
+        slot: 1
+        label: GigabitEthernet0/0
+        type: physical
+      - id: i2
+        slot: 2
+        label: GigabitEthernet0/1
+        type: physical
+      - id: i3
+        slot: 3
+        label: GigabitEthernet0/2
+        type: physical
+  - id: n4
+    label: Switch2
+    node_definition: iosvl2
+    x: 571
+    y: 365
+    configuration: hostname inserthostname_here
+    hide_links: false
+    ram: 768
+    cpus: 1
+    cpu_limit: 100
+    data_volume: 0
+    boot_disk_size: 0
+    tags: []
+    interfaces:
+      - id: i0
+        label: Loopback0
+        type: loopback
+      - id: i1
+        slot: 0
+        label: GigabitEthernet0/0
+        type: physical
+      - id: i2
+        slot: 1
+        label: GigabitEthernet0/1
+        type: physical
+      - id: i3
+        slot: 2
+        label: GigabitEthernet0/2
+        type: physical
+      - id: i4
+        slot: 3
+        label: GigabitEthernet0/3
+        type: physical
+links:
+  - id: l0
+    i1: i1
+    n1: n3
+    i2: i2
+    n2: n4
+    label: ASA-GigabitEthernet0/0<->iosvl2-0-GigabitEthernet0/1
+  - id: l1
+    i1: i1
+    n1: n1
+    i2: i2
+    n2: n3
+    label: ISP1-GigabitEthernet1<->ASA-GigabitEthernet0/1
+  - id: l2
+    i1: i1
+    n1: n2
+    i2: i3
+    n2: n3
+    label: ISP2-GigabitEthernet1<->ASA-GigabitEthernet0/2
+  - id: l3
+    i1: i1
+    n1: n0
+    i2: i1
+    n2: n4
+    label: InternalNetwork-GigabitEthernet1<->Switch2-GigabitEthernet0/0
