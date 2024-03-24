@@ -1,2 +1,2 @@
-# CCIE_Labs
-CML based lab files to practice some topics from CCIE lab blueprint 6.1
+# CCIE_Labs files
+CML based lab files to practice some topics from CCIE Security lab blueprint version 6.1
