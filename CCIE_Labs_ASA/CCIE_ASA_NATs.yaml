@@ -1,0 +1,242 @@
+lab:
+  description: ''
+  notes: ''
+  title: CCIE_ASA_Cohort_NATs
+  version: 0.0.5
+nodes:
+  - id: n0
+    label: InsideRouter
+    node_definition: csr1000v
+    x: 493
+    y: 292
+    configuration: |-
+      hostname inserthostname_here
+      end
+    hide_links: false
+    ram: 3072
+    cpus: 1
+    cpu_limit: 100
+    data_volume: 0
+    boot_disk_size: 0
+    tags: []
+    interfaces:
+      - id: i0
+        label: Loopback0
+        type: loopback
+      - id: i1
+        slot: 0
+        label: GigabitEthernet1
+        type: physical
+      - id: i2
+        slot: 1
+        label: GigabitEthernet2
+        type: physical
+      - id: i3
+        slot: 2
+        label: GigabitEthernet3
+        type: physical
+      - id: i4
+        slot: 3
+        label: GigabitEthernet4
+        type: physical
+  - id: n1
+    label: ASA-NAT
+    node_definition: asav
+    x: 733
+    y: 295
+    configuration: ''
+    hide_links: false
+    ram: 2048
+    cpus: 1
+    cpu_limit: 100
+    data_volume: 0
+    boot_disk_size: 0
+    tags: []
+    interfaces:
+      - id: i0
+        slot: 0
+        label: Management0/0
+        type: physical
+      - id: i1
+        slot: 1
+        label: GigabitEthernet0/0
+        type: physical
+      - id: i2
+        slot: 2
+        label: GigabitEthernet0/1
+        type: physical
+      - id: i3
+        slot: 3
+        label: GigabitEthernet0/2
+        type: physical
+      - id: i4
+        slot: 4
+        label: GigabitEthernet0/3
+        type: physical
+  - id: n2
+    label: DMZRouter
+    node_definition: csr1000v
+    x: 733
+    y: 85
+    configuration: |-
+      hostname inserthostname_here
+      end
+    hide_links: false
+    ram: 3072
+    cpus: 1
+    cpu_limit: 100
+    data_volume: 0
+    boot_disk_size: 0
+    tags: []
+    interfaces:
+      - id: i0
+        label: Loopback0
+        type: loopback
+      - id: i1
+        slot: 0
+        label: GigabitEthernet1
+        type: physical
+      - id: i2
+        slot: 1
+        label: GigabitEthernet2
+        type: physical
+      - id: i3
+        slot: 2
+        label: GigabitEthernet3
+        type: physical
+      - id: i4
+        slot: 3
+        label: GigabitEthernet4
+        type: physical
+  - id: n3
+    label: OutsideRouter
+    node_definition: csr1000v
+    x: 951
+    y: 290
+    configuration: |-
+      hostname inserthostname_here
+      end
+    hide_links: false
+    ram: 3072
+    cpus: 1
+    cpu_limit: 100
+    data_volume: 0
+    boot_disk_size: 0
+    tags: []
+    interfaces:
+      - id: i0
+        label: Loopback0
+        type: loopback
+      - id: i1
+        slot: 0
+        label: GigabitEthernet1
+        type: physical
+      - id: i2
+        slot: 1
+        label: GigabitEthernet2
+        type: physical
+      - id: i3
+        slot: 2
+        label: GigabitEthernet3
+        type: physical
+      - id: i4
+        slot: 3
+        label: GigabitEthernet4
+        type: physical
+  - id: n4
+    label: Win10-0
+    node_definition: Windows10
+    x: 1436
+    y: 694
+    configuration: ''
+    hide_links: false
+    ram: 8192
+    cpus: 2
+    cpu_limit: 100
+    data_volume: 0
+    boot_disk_size: 120
+    tags: []
+    interfaces:
+      - id: i0
+        slot: 0
+        label: eth0
+        type: physical
+      - id: i1
+        slot: 1
+        label: eth1
+        type: physical
+  - id: n5
+    label: OutsideSwitch
+    node_definition: iosvl2
+    x: 1779
+    y: 383
+    configuration: hostname inserthostname_here
+    hide_links: false
+    ram: 768
+    cpus: 1
+    cpu_limit: 100
+    data_volume: 0
+    boot_disk_size: 0
+    tags: []
+    interfaces:
+      - id: i0
+        label: Loopback0
+        type: loopback
+      - id: i1
+        slot: 0
+        label: GigabitEthernet0/0
+        type: physical
+      - id: i2
+        slot: 1
+        label: GigabitEthernet0/1
+        type: physical
+      - id: i3
+        slot: 2
+        label: GigabitEthernet0/2
+        type: physical
+      - id: i4
+        slot: 3
+        label: GigabitEthernet0/3
+        type: physical
+  - id: n6
+    label: alpine-0
+    node_definition: alpine
+    x: 1777
+    y: 315
+    configuration: |-
+      # this is a shell script which will be sourced at boot
+      hostname inserthostname_here
+      # configurable user account
+      USERNAME=cisco
+      PASSWORD=cisco
+    hide_links: false
+    ram: 512
+    cpus: 1
+    cpu_limit: 100
+    data_volume: 0
+    boot_disk_size: 16
+    tags: []
+    interfaces:
+      - id: i0
+        slot: 0
+        label: eth0
+        type: physical
+links:
+  - id: l0
+    i1: i1
+    n1: n1
+    i2: i1
+    n2: n0
+    label: ASA-NAT-GigabitEthernet0/0<->Outside-Loopack 10.2.2.2-GigabitEthernet1
+  - id: l1
+    i1: i2
+    n1: n1
+    i2: i1
+    n2: n3
+    label: ASA-NAT-GigabitEthernet0/1<->Inside-GigabitEthernet1
+  - id: l2
+    i1: i3
+    n1: n1
+    i2: i1
+    n2: n2
+    label: ASA-NAT-GigabitEthernet0/2<->DMZ-GigabitEthernet1
