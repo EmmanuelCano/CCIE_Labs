@@ -1,3 +1,16 @@
+
+"""
+Author: Emmanuel Cano - Senior Security Consulting Engineer @ Cisco Systems. (ecanogut@cisco.com)
+Purpose: Basic Configuration for following ASA features:
+1. Policy Based Routing (PBR)
+2. Security Levels
+3. Transparent Firewall 
+4. Static NAT, Dynamic NAT, PAT
+5. Application Inspection (i.e ICMP)
+6. Access Control List (ACL)
+7. Cluster - Only configuration example as this feature is NOT supported on ASA virtual
+"""
+
 ---------------------
 —ASA_Cohort_Initial—
 ---------------------
